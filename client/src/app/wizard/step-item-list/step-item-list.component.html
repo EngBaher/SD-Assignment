@@ -1,0 +1,21 @@
+<div *ngFor="let item of step.stepItems; index as i">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between flex-row">
+      <span> step {{ i + 1 }} </span>
+      <i
+        (click)="removeStepItem(item)"
+        class="fa fa-minus text-danger mr-2"
+        style="cursor: pointer; font-size: 2em"
+      ></i>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ item.titel }}</h5>
+      <p class="card-text">
+        {{ item.description }}
+      </p>
+      <button class="btn btn-lg btn-info btn-block" (click)="edit(item)">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Add / Edit Step Item</h2>
+
+<mat-dialog-content [formGroup]="stepItemForm">
+  <div class="form-group">
+    <label for="titel">Titel : </label>
+    <input id="titel" class="form-control" formControlName="titel" />
+    <div
+      *ngIf="
+        stepItemForm.controls.titel.errors?.required &&
+        stepItemForm.controls.titel.touched
+      "
+      class="error"
+    >
+      *Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description : </label>
+    <input
+      class="form-control"
+      id="description"
+      formControlName="description"
+    />
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    [disabled]="stepItemForm.invalid"
+    class="btn btn-lg btn-primary btn-block"
+    (click)="save()"
+  >
+    Save
+  </button>
+  <button class="btn btn-lg btn-danger btn-block" (click)="close()">
+    Close
+  </button>
+</mat-dialog-actions>

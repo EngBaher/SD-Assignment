@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="arrow-steps clearfix">
+      <div style="margin-top: 75px">
+        <div class="row">
+          <div class="eachStep" *ngFor="let step of steps$ | async; index as i">
+            <div>
+              <div class="step" [class.current]="i == currentStep">
+                <div class="d-flex justify-content-between flex-row">
+                  <span> step {{ i + 1 }} </span>
+                  <i
+                    (click)="removeStep(step)"
+                    class="fa fa-minus text-danger mr-2"
+                    style="cursor: pointer; font-size: 2em"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="eachStep">
+            <div>
+              <div class="step">
+                <i
+                  (click)="addStep()"
+                  class="fa fa-plus text-primary mr-2"
+                  style="cursor: pointer; font-size: 2em"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let step of steps$ | async; index as i">
+      <div *ngIf="i == currentStep">
+        <div class="d-flex justify-content-center">
+          <button
+            style="margin: 20px"
+            class="btn btn-lg btn-primary"
+            (click)="newItem(step)"
+          >
+            Add Item
+          </button>
+        </div>
+
+        <app-step-item-list [step]="step"></app-step-item-list>
+        <div class="buttonGroup">
+          <button
+            *ngIf="i != 0"
+            (click)="back(i)"
+            class="btn btn-lg btn-primary mr-2"
+          >
+            Previous
+          </button>
+          <button
+            *ngIf="i <= (steps$ | async)?.length - 1"
+            (click)="next(i)"
+            class="btn btn-lg btn-primary"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
